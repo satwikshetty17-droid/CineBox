@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBox - Stream Movies & TV Shows</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Helvetica+Neue:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-film"></i>
+                <span>CineBox</span>
+            </div>
+            <div class="spinner"></div>
+            <p class="loading-text">Loading your entertainment...</p>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <a href="#" class="logo">
+                <i class="fas fa-film"></i>
+                <span>CineBox</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-section="posters">Posters</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <div class="search-container">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search movies and TV shows...">
+            </div>
+            <div class="notifications">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-slider">
+            <!-- Slides will be added dynamically -->
+        </div>
+        <div class="hero-nav">
+            <button class="hero-nav-btn prev" id="heroPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="hero-nav-btn next" id="heroNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="https://fontmeme.com/permalink/240117/4c3be12e8b9d4ab532615f17692cf3d3.png" alt="Movie Logo"
+                    class="hero-title-logo">
+            </div>
+            <img src="https://fontmeme.com/permalink/240117/4c3be12e8b9d4ab532615f17692cf3d3.png" alt="Movie Logo"
+                class="hero-logo" id="heroLogo" style="max-width: 400px; margin-bottom: 20px; display: none;">
+            <h1 class="hero-title" id="heroTitle">Stranger Things</h1>
+            <div class="hero-meta">
+                <span class="match-score"><i class="fas fa-thumbs-up"></i> 92% Match</span>
+                <span class="year">2024</span>
+                <span class="seasons">4 Seasons</span>
+                <span class="quality"><i class="fas fa-hd"></i> HD</span>
+                <span class="rating"><i class="fas fa-user-friends"></i> 16+</span>
+            </div>
+            <p class="hero-description" id="heroDescription">When a young boy vanishes, a small town uncovers a mystery
+                involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-play" id="playBtn">
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <button class="btn btn-info" id="infoBtn">
+                    <i class="fas fa-info-circle"></i> More Info
+                </button>
+
+            </div>
+            <div class="hero-cast">
+                <div class="hero-cast-item">
+                    <img src="https://image.tmdb.org/t/p/w185/8GId8S0B998lU866Wz671D6K4.jpg" alt="Millie Bobby Brown"
+                        class="hero-cast-thumb">
+                    <span class="hero-cast-name">Millie Bobby Brown</span>
+                </div>
+                <div class="hero-cast-item">
+                    <img src="https://image.tmdb.org/t/p/w185/n87X6vYmpxYf6Fto9An3mY8k7i.jpg" alt="Finn Wolfhard"
+                        class="hero-cast-thumb">
+                    <span class="hero-cast-name">Finn Wolfhard</span>
+                </div>
+                <div class="hero-cast-item">
+                    <img src="https://image.tmdb.org/t/p/w185/k8IthpxT5S9v9vU8v9An3mY8k7i.jpg" alt="Winona Ryder"
+                        class="hero-cast-thumb">
+                    <span class="hero-cast-name">Winona Ryder</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-indicators" id="heroIndicators">
+            <!-- Indicators will be added dynamically -->
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <span>Scroll for more</span>
+        </div>
+    </section>
+
+    <!-- Movie Rows Section -->
+    <main class="main-content" id="mainContent">
+        <div class="movie-rows-container" id="movieRows">
+            <!-- Rows will be generated dynamically -->
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <div class="modal-header" id="modalHeader">
+                <div class="modal-video-container" id="modalVideoContainer">
+                    <!-- Trailer will be injected here -->
+                </div>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-header-actions">
+                    <button class="btn btn-play" id="modalPlayBtn">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                    <button class="action-btn" id="modalMuteBtn">
+                        <i class="fas fa-volume-mute"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-poster">
+                    <img src="" alt="" id="modalPoster">
+                </div>
+                <div class="modal-details">
+                    <img src="" alt="" class="modal-logo" id="modalLogo"
+                        style="display: none; max-width: 250px; margin-bottom: 15px;">
+                    <h2 class="modal-title" id="modalTitle">Movie Title</h2>
+                    <div class="modal-meta">
+                        <span class="modal-match" id="modalMatch">92% Match</span>
+                        <span class="modal-year" id="modalYear">2023</span>
+                        <span class="modal-runtime" id="modalRuntime">2h 18m</span>
+                        <span class="modal-rating" id="modalRating">TV-MA</span>
+                        <span class="modal-quality" id="modalQuality">HD</span>
+                    </div>
+                    <p class="modal-description" id="modalDescription">Movie description goes here. This is a detailed
+                        overview of the movie plot, characters, and other relevant information that viewers might want
+                        to know before watching.</p>
+
+                    <div class="modal-genres" id="modalGenres">
+                        <span class="genre-tag">Sci-Fi</span>
+                        <span class="genre-tag">Thriller</span>
+                        <span class="genre-tag">Drama</span>
+                    </div>
+
+                    <div class="modal-cast" id="modalCast">
+                        <h3>Cast</h3>
+                        <div class="cast-grid">
+                            <!-- Cast will be added dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="modal-similar" id="modalSimilar">
+                        <h3>More Like This</h3>
+                        <div class="similar-grid">
+                            <!-- Similar movies will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn btn-play">
+                        <i class="fas fa-play"></i> Play Movie
+                    </button>
+                    <button class="btn btn-list">
+                        <i class="fas fa-plus"></i> Add to List
+                    </button>
+                    <button class="btn btn-share">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                    <button class="btn btn-download">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Center -->
+    <div class="notification-center" id="notificationCenter">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="notification-close" id="notificationClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item new">
+                <div class="notification-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <strong>New Episode Available</strong>
+                    <p>Stranger Things S4:E5 is now available</p>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <div class="notification-item new">
+                <div class="notification-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <strong>Added to Your List</strong>
+                    <p>Oppenheimer has been added to your watchlist</p>
+                    <small>1 day ago</small>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="notification-content">
+                    <strong>Recommendation</strong>
+                    <p>Based on your watching history</p>
+                    <small>2 days ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                </div>
+                <div class="footer-links-container">
+                    <div class="footer-column">
+                        <h4>Get to Know Us</h4>
+                        <a href="#">About CineBox</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press Releases</a>
+                        <a href="#">CineBox Science</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Make Money with Us</h4>
+                        <a href="#">Sell on CineBox</a>
+                        <a href="#">Become an Affiliate</a>
+                        <a href="#">Advertise Your Products</a>
+                        <a href="#">Self-Publish with Us</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>CineBox Payment</h4>
+                        <a href="#">CineBox Business Card</a>
+                        <a href="#">Shop with Points</a>
+                        <a href="#">Reload Your Balance</a>
+                        <a href="#">Currency Converter</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Let Us Help You</h4>
+                        <a href="#">Your Account</a>
+                        <a href="#">Your Orders</a>
+                        <a href="#">Shipping Rates & Policies</a>
+                        <a href="#">Returns & Replacements</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-middle">
+                <div class="footer-logo">
+                    <i class="fas fa-film"></i>
+                    <span>CineBox</span>
+                </div>
+                <div class="footer-actions">
+                    <button class="footer-action-btn">
+                        <i class="fas fa-globe"></i> English
+                    </button>
+                    <button class="footer-action-btn">
+                        <i class="fas fa-dollar-sign"></i> USD - U.S. Dollar
+                    </button>
+                    <button class="footer-action-btn">
+                        <i class="fas fa-flag-usa"></i> United States
+                    </button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 CineBox, Inc. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Conditions of Use</a>
+                        <a href="#">Privacy Notice</a>
+                        <a href="#">Your Ads Privacy Choices</a>
+                        <a href="#">Cookies Notice</a>
+                    </div>
+                </div>
+                <div class="footer-apps">
+                    <p>Get the CineBox App</p>
+                    <div class="app-badges">
+                        <a href="#" class="app-badge">
+                            <i class="fab fa-apple"></i>
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="app-badge">
+                            <i class="fab fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+                        <a href="#" class="app-badge">
+                            <i class="fab fa-windows"></i>
+                            <span>Microsoft</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Background Video for Hero -->
+    <video autoplay muted loop id="heroVideo" class="hero-video">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            type="video/mp4">
+    </video>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
